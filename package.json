@@ -8,6 +8,12 @@
   "dependencies": {
   	"level": "*"
   },
+   "devDependencies": {
+        "rimraf": "2.1",
+        "leveldown": "~1.0.0",
+        "levelup": "~0.19.0",
+        "uuid": "~1.4.1"
+    },
   "repository": {
     "type": "git",
     "url": "https://github.com/richorama/level-geospatial.git"
