@@ -6,7 +6,7 @@
     var lowerright = [24.520833, -81.963611];
     
     // default spacing (in meters)
-    var spacing = 2150;
+    var spacing = 2075;
     
     // default density
     var density = 1;
@@ -89,14 +89,6 @@
 	levelup(path, dboptions, function(err, ndb){
 	    // save the top level settings
 	    var settings = { 'topleft': { lat: topleft[0], lon: topleft[1] }, 'lowerright': { lat: lowerright[0], lon: lowerright[1] }, spacing: spacing, density: density };
-	    ndb.put('config', JSON.stringify(settings));
-	    
-	    /*
-	    ndb.get('config', function(err, val){
-		console.log(val);
-	    });
-	    */
-	    
 	    // create the geo database
 	    geo = require('../lib/level-geospatial')(ndb, { mode: 'bulk' });
 	    
@@ -121,6 +113,13 @@
 			    if(nlat <= lowerright[0]){
 				if(nlon == topleft[1] || nlon >= lowerright[1]){
 				    // and we're done
+				    settings['size'] = globalcount;
+				    ndb.put('config', JSON.stringify(settings));
+				    /*
+				      ndb.get('config', function(err, val){
+				      console.log(val);
+				      });
+				    */
 				    done(globalcount);
 				    return;
 				}
