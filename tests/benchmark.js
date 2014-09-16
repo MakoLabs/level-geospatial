@@ -92,8 +92,9 @@
 		}).on('end', function(){
 		    var end = Date.now();
 		    var interval = (end - start)/1000;
-		    console.log("Search radius: "+pad(radii[radius_index], 10)+"m\tResults: "+pad(result_count, 10)+"\tDuration: "+pad(interval.toFixed(4), 8)+" seconds.");
-		    
+		    var ltps = result_count/interval;
+                    console.log("Search radius: "+pad(radii[radius_index], 10)+"m\tResults: "+pad(result_count, 10)+"\tDuration: "+pad(interval.toFixed(4), 8)+" seconds\tTPS: "+pad(ltps.toFixed(3), 8)+".");
+
 		    var next_index = radius_index + 1;
 		    if(next_index >= runs || next_index >= radii.length){
 			return;
